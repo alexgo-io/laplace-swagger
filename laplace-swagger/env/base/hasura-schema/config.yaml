@@ -1,0 +1,4 @@
+version: 3
+endpoint: {{HASURA_HOST}}
+admin_secret: {{X_HASURA_ADMIN_SECRET}}
+metadata_directory: metadata

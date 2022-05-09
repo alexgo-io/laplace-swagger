@@ -1,0 +1,3 @@
+drop index coin_gecko_archive_coin_gecko_id_index;
+drop index coin_gecko_archive_timestamp_index;
+drop index coin_gecko_archive_token_timestamp_index;

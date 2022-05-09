@@ -1,0 +1,20 @@
+overwrite: true
+schema: "{{HASURA_HOST}}/v1/graphql"
+headers:
+  x-hasura-admin-secret: "{{X_HASURA_ADMIN_SECRET}}"
+  x-hasura-role: "admin"
+documents:
+  - src/**/*.graphql
+generates:
+  src/graphql/generated/graphql-schema.json:
+    plugins:
+      - introspection
+  src/graphql/generated/graphql-request.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+    config:
+      namingConvention:
+        typeNames: change-case#pascalCase
+        transformUnderscore: true

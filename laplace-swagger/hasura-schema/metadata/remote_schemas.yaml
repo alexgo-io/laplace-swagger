@@ -1,0 +1,8 @@
+- name: Contentful
+  definition:
+    url: https://graphql.contentful.com/content/v1/spaces/frwmwlognk87
+    timeout_seconds: 60
+    headers:
+      - value: Bearer riV3KvByaEvfPP9Ko_gUBMS9qRS3SPajXZ0nEoaZ4bY
+        name: Authorization
+  comment: ""

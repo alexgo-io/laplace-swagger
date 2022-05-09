@@ -1,0 +1,3 @@
+table:
+  schema: laplace
+  name: latest_fixed_weight_pool_v1_01

@@ -1,0 +1,15 @@
+table:
+  schema: laplace
+  name: coin_gecko
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - coin_gecko_id
+        - token
+        - avg_price_usd
+        - ccy
+        - market_cap
+        - prices_market
+        - timestamp
+      filter: {}

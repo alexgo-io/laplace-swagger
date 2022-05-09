@@ -1,0 +1,92 @@
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres:14.2'
+    shm_size: 2gb
+    ports:
+      - '65432:5432'
+    environment:
+      POSTGRES_USER: laplace_dev
+      POSTGRES_PASSWORD: ed1dynCpdTreu5a
+      POSTGRES_DB: laplace_dev
+      POSTGRES_PORT: 5432
+    networks:
+      - laplace_dev_stacks_network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  stacks-blockchain-api:
+    image: us-central1-docker.pkg.dev/fifth-compiler-334213/alexgo/stacks-blockchain-api:3.0.3
+    command: sh -c "/wait && node ./lib/index.js"
+    restart: always
+    ports:
+      - '63999:3999'
+    environment:
+      WAIT_HOSTS: 'postgres:5432'
+      SKIP_REFRESH_MATERIALIZED_VIEW: 'true'
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_USER: laplace_dev
+      PG_PASSWORD: ed1dynCpdTreu5a
+      PG_DATABASE: laplace_dev
+      STACKS_CORE_EVENT_PORT: '3700'
+      STACKS_CORE_EVENT_HOST: http://0.0.0.0
+      STACKS_BLOCKCHAIN_API_PORT: '3999'
+      STACKS_BLOCKCHAIN_API_HOST: 0.0.0.0
+      STACKS_BLOCKCHAIN_API_DB: pg
+      STACKS_CORE_RPC_HOST: stacks-node-rpc.alexgo.dev
+      STACKS_CORE_RPC_PORT: '80'
+      STACKS_CHAIN_ID: '0x80000000'
+      NODE_ENV: development
+    volumes:
+      - $PWD/docker/wait:/wait
+    networks:
+      - laplace_dev_stacks_network
+  replicator:
+    image: us-central1-docker.pkg.dev/fifth-compiler-334213/alexgo/stacks-blockchain-api-replicator:v20220308-6fad681
+    container_name: laplace_dev_replicator
+    restart: always
+    environment:
+      WAIT_HOSTS: 'stacks-blockchain-api:3700'
+      PG_CONNECTION_STRING: 'postgresql://alex:ed1dynCpdTreu5a@stacks-node-rpc.alexgo.dev:54321/alexgo'
+      EVENT_API_ENDPOINT: http://stacks-blockchain-api:3700
+    volumes:
+      - $PWD/docker/wait:/wait
+      - replica:/srv/state
+    networks:
+      - laplace_dev_stacks_network
+    command: sh -c "/wait && node /srv/main.js"
+  hasura:
+    restart: always
+    image: hasura/graphql-engine:v2.6.0
+    ports:
+      - '60880:8080'
+    networks:
+      - laplace_dev_stacks_network
+    environment:
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: 'postgresql://laplace_dev:ed1dynCpdTreu5a@postgres:5432/laplace_dev'
+      LAPLACE_DATABASE_URL: 'postgresql://laplace_dev:ed1dynCpdTreu5a@postgres:5432/laplace_dev'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_LOG_LEVEL: 'info'
+      HASURA_GRAPHQL_ADMIN_SECRET: 'ed1dynCpdTreu5a'
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'public'
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: 'startup, http-log, webhook-log, websocket-log, query-log'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_SERVER_PORT: 8080
+  loader:
+    image: 'us-central1-docker.pkg.dev/fifth-compiler-334213/alexgo/alex-stacks-loader:v20220225-f2272443'
+    environment:
+      PG_CONNECTION_STRING: 'postgresql://laplace_dev:ed1dynCpdTreu5a@postgres:5432/laplace_dev'
+      WAIT_BEFORE: 3
+      WAIT_AFTER: 3
+      WAIT_HOSTS: 'stacks-blockchain-api:3700'
+    networks:
+      - laplace_dev_stacks_network
+    volumes:
+      - $PWD/docker/wait:/wait
+    command: sh -c "/wait && node /srv/main.js"
+
+networks:
+  laplace_dev_stacks_network: {}
+volumes:
+  pgdata: {}
+  replica: {}

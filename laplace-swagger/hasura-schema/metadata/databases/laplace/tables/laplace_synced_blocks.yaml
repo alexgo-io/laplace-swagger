@@ -1,0 +1,3 @@
+table:
+  schema: laplace
+  name: synced_blocks

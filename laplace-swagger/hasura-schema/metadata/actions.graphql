@@ -1,0 +1,15 @@
+type Query {
+  get_crp_simulation(
+    args: CRPSimulationInput!
+  ): CRPSimulationOutput
+}
+
+input CRPSimulationInput {
+  start_date: String!
+  end_date: String!
+}
+
+type CRPSimulationOutput {
+  data: jsonb!
+}
+

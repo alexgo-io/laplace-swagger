@@ -1,0 +1,24 @@
+actions:
+  - name: get_crp_simulation
+    definition:
+      kind: ""
+      handler: https://crp-simulator-dks44dnbuq-uw.a.run.app/simulation
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+              "start_date": {{$body.input.args.start_date}},
+              "end_date": {{$body.input.args.end_date}}
+            }
+        method: POST
+        version: 2
+        query_params: {}
+        template_engine: Kriti
+custom_types:
+  enums: []
+  input_objects:
+    - name: CRPSimulationInput
+  objects:
+    - name: CRPSimulationOutput
+  scalars: []

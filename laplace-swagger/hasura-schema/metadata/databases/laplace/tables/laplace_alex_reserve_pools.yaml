@@ -1,0 +1,27 @@
+table:
+  schema: laplace
+  name: alex_reserve_pools
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - apower_multiplier
+        - coinbase_amount_1
+        - coinbase_amount_2
+        - coinbase_amount_3
+        - coinbase_amount_4
+        - coinbase_amount_5
+        - dual_yield_token_multiplier
+        - reserved_balance
+        - dual_yield_token_deployer_address
+        - dual_yield_token_name
+        - token_deployer_address
+        - token_name
+        - activation_block
+        - block_height
+        - current_cycle
+        - reward_cycle_length
+        - token_halving_cycle
+        - sync_at
+        - staking_stats
+      filter: {}

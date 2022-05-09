@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+cd $(dirname "${BASH_SOURCE[0]}")
+cd ..
+export BASEDIR=$(pwd)
+
+if [ ! -z "${RUN_HASURA_APPLY}" ]; then
+  cd $BASEDIR/hasura-schema
+  echo "version: 3
+endpoint: ${HASURA_HOST}
+admin_secret: ${X_HASURA_ADMIN_SECRET}
+metadata_directory: metadata" > config.yaml
+  $BASEDIR/bin/hasura-cli --skip-update-check metadata apply
+  $BASEDIR/bin/hasura-cli --skip-update-check migrate apply --all-databases
+  $BASEDIR/bin/hasura-cli --skip-update-check metadata reload
+fi

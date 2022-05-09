@@ -1,0 +1,3 @@
+table:
+  schema: public_dbt
+  name: dim_balance_autoalex_rank_on_height_view

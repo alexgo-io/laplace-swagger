@@ -1,0 +1,22 @@
+table:
+  schema: laplace
+  name: ido_pool_creation
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - tx_id
+        - block_height
+        - ido_token
+        - payment_token
+        - ido_owner
+        - claim_end_height
+        - activation_threshold
+        - ido_tokens_per_ticket
+        - registration_end_height
+        - price_per_ticket_in_fixed
+        - registration_start_height
+        - apower_per_ticket_in_fixed
+        - transaction_result_type
+        - result_value
+      filter: {}

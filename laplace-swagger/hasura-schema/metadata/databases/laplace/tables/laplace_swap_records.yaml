@@ -1,0 +1,3 @@
+table:
+  schema: laplace
+  name: swap_records

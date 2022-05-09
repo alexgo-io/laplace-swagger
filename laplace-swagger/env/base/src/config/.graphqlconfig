@@ -1,0 +1,24 @@
+{
+  "name": "laplace:hasura",
+  "schemaPath": "../graphql/generated/graphql-schema.json",
+  "extensions": {
+    "endpoints": {
+      "dev": {
+        "url": "{{HASURA_HOST}}/v1/graphql",
+        "headers": {
+          "x-hasura-admin-secret": "{{X_HASURA_ADMIN_SECRET}}",
+          "x-hasura-role": "admin",
+          "user-agent": "JS GraphQL"
+        },
+        "subscription": {
+          "url": "{{HASURA_HOST_WS}}",
+          "headers": {
+            "x-hasura-admin-secret": "{{X_HASURA_ADMIN_SECRET}}",
+            "user-agent": "JS GraphQL"
+          }
+        },
+        "introspect": true
+      }
+    }
+  }
+}

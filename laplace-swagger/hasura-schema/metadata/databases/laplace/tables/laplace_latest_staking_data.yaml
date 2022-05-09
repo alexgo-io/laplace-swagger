@@ -1,0 +1,15 @@
+table:
+  schema: laplace
+  name: latest_staking_data
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - coinbase_amount
+        - staking_stats
+        - token
+        - block_height
+        - current_cycle
+        - cycle
+        - apr
+      filter: {}

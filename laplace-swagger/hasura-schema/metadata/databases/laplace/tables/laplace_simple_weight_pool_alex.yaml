@@ -1,0 +1,3 @@
+table:
+  schema: laplace
+  name: simple_weight_pool_alex

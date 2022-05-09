@@ -1,0 +1,30 @@
+table:
+  schema: laplace
+  name: contract_calls
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - execution_cost_read_count
+        - execution_cost_read_length
+        - execution_cost_runtime
+        - execution_cost_write_count
+        - execution_cost_write_length
+        - fee_rate
+        - tx_id
+        - arg1
+        - arg2
+        - arg3
+        - arg4
+        - arg5
+        - contract_id
+        - contract_name
+        - function_name
+        - sender_address
+        - transaction_result_type
+        - block_height
+        - events
+        - function_args
+        - transaction_result
+        - anchor_mode
+      filter: {}

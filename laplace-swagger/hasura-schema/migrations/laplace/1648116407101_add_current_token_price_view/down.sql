@@ -1,0 +1,1 @@
+drop view laplace.current_token_price;

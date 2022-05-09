@@ -1,0 +1,11 @@
+table:
+  schema: laplace
+  name: external_token_price
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - token_name
+        - value
+        - time_stamp
+      filter: {}

@@ -1,0 +1,3 @@
+table:
+  schema: laplace
+  name: reward_cycle_stats
