@@ -1,2 +1,8 @@
 # laplace-swagger
-ALEX laplace REST api swagger
+
+## To generate swagger document
+
+yarn
+```shell
+yarn swagger
+```
