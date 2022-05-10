@@ -1,9 +1,0 @@
-- name: laplace
-  kind: postgres
-  configuration:
-    connection_info:
-      use_prepared_statements: false
-      database_url:
-        from_env: LAPLACE_DATABASE_URL
-      isolation_level: read-committed
-  tables: "!include laplace/tables/tables.yaml"

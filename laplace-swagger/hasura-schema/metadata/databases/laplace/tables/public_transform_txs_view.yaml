@@ -1,3 +1,0 @@
-table:
-  schema: public_transform
-  name: txs_view

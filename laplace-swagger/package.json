@@ -1,77 +1,73 @@
 {
-  "name": "@alexgo-io/alex-laplace-sync",
-  "private": true,
-  "scripts": {
-    "use": "env/use.sh",
-    "local-env": "bin/hasura",
-    "gen:hasura": "graphql-codegen --config src/config/codegen.yaml",
-    "lint": "eslint ./src --ext ts,tsx",
-    "build": "rimraf dist && tsetse",
-    "test": "jest --passWithNoTests",
-    "ci": "concurrently -r 'yarn tsetse --noEmit' 'yarn lint' 'yarn test'",
-    "start": "esno src/main.ts",
-    "hasura:console": "./bin/hasura-cli-console"
-  },
-  "lint-staged": {
-    "*.{js,json,md,ts,tsx}": [
-      "prettier --write"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "semi": true,
-    "tabWidth": 2,
-    "arrowParens": "avoid",
-    "trailingComma": "all",
-    "printWidth": 80
-  },
-  "dependencies": {
-    "@google-cloud/logging": "^9.8.3",
-    "@stacks/blockchain-api-client": "^3.0.3",
-    "@stacks/network": "^4.0.0",
-    "@stacks/transactions": "^4.0.0",
-    "axios": "^0.27.2",
-    "clarity-codegen": "^0.0.15",
-    "graphql": "^16.4.0",
-    "graphql-request": "^4.2.0",
-    "graphql-tag": "^2.12.6",
-    "memoizee": "^0.4.15",
-    "safe-json-stringify": "^1.2.0",
-    "source-map-support": "^0.5.21",
-    "yargs": "^17.4.1",
-    "yqueue": "^1.0.0"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/introspection": "^2.1.1",
-    "@graphql-codegen/typescript": "^2.4.10",
-    "@graphql-codegen/typescript-graphql-request": "^4.4.7",
-    "@graphql-codegen/typescript-operations": "^2.3.7",
-    "@types/coingecko-api": "^1.0.10",
-    "@types/jest": "^27.5.0",
-    "@types/memoizee": "^0.4.8",
-    "@types/node": "^17.0.31",
-    "@types/safe-json-stringify": "^1.1.2",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
-    "concurrently": "^7.1.0",
-    "dotenv": "^16.0.0",
-    "esbuild": "^0.14.38",
-    "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "esno": "^0.14.1",
-    "husky": "^8.0.0",
-    "jest": "^28.1.0",
-    "lint-staged": "^12.4.1",
-    "postinstall-postinstall": "^2.1.0",
-    "prettier": "^2.6.2",
-    "prettier-plugin-organize-imports": "^2.3.4",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.2",
-    "tsetse": "^0.0.3",
-    "typescript": "^4.6.4"
-  },
-  "packageManager": "yarn@3.2.0"
+    "name": "@alexgo-io/alex-laplace-sync",
+    "private": true,
+    "scripts": {
+        "use": "env/use.sh",
+        "lint": "eslint ./src --ext ts,tsx",
+        "test": "jest --passWithNoTests",
+        "ci": "concurrently -r 'yarn tsetse --noEmit' 'yarn lint' 'yarn test'",
+        "swagger":"esno src/swagger.ts"
+    },
+    "lint-staged": {
+        "*.{js,json,md,ts,tsx}": [
+            "prettier --write"
+        ]
+    },
+    "prettier": {
+        "singleQuote": true,
+        "semi": true,
+        "tabWidth": 2,
+        "arrowParens": "avoid",
+        "trailingComma": "all",
+        "printWidth": 80
+    },
+    "dependencies": {
+        "@google-cloud/logging": "^9.8.3",
+        "@stacks/blockchain-api-client": "^3.0.3",
+        "@stacks/network": "^4.0.0",
+        "@stacks/transactions": "^4.0.0",
+        "axios": "^0.27.2",
+        "clarity-codegen": "^0.0.15",
+        "graphql": "^16.4.0",
+        "graphql-request": "^4.2.0",
+        "graphql-tag": "^2.12.6",
+        "memoizee": "^0.4.15",
+        "safe-json-stringify": "^1.2.0",
+        "source-map-support": "^0.5.21",
+        "yargs": "^17.4.1",
+        "yqueue": "^1.0.0"
+    },
+    "devDependencies": {
+        "@graphql-codegen/cli": "^2.6.2",
+        "@graphql-codegen/introspection": "^2.1.1",
+        "@graphql-codegen/typescript": "^2.4.10",
+        "@graphql-codegen/typescript-graphql-request": "^4.4.7",
+        "@graphql-codegen/typescript-operations": "^2.3.7",
+        "@types/coingecko-api": "^1.0.10",
+        "@types/jest": "^27.5.0",
+        "@types/memoizee": "^0.4.8",
+        "@types/node": "^17.0.31",
+        "@types/safe-json-stringify": "^1.1.2",
+        "@typescript-eslint/eslint-plugin": "^5.22.0",
+        "@typescript-eslint/parser": "^5.22.0",
+        "concurrently": "^7.1.0",
+        "dotenv": "^16.0.0",
+        "esbuild": "^0.14.38",
+        "eslint": "^8.15.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "esno": "^0.14.1",
+        "husky": "^8.0.0",
+        "jest": "^28.1.0",
+        "lint-staged": "^12.4.1",
+        "postinstall-postinstall": "^2.1.0",
+        "prettier": "^2.6.2",
+        "prettier-plugin-organize-imports": "^2.3.4",
+        "rimraf": "^3.0.2",
+        "ts-jest": "^28.0.2",
+        "tsetse": "^0.0.3",
+        "typescript": "^4.6.4"
+    },
+    "packageManager": "yarn@3.2.0"
 }

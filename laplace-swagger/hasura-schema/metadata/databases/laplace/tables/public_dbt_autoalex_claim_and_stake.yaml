@@ -1,3 +1,0 @@
-table:
-  schema: public_dbt
-  name: autoalex_claim_and_stake
